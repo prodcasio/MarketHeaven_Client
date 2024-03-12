@@ -32,11 +32,13 @@ public class Main {
 
     public static void main(String[] args) throws IOException, FontFormatException {
 
+        // Inizializza i font e li imposta per tutto il programma
         File font_file = new File("Montserrat.ttf");
         Font defaultFont = Font.createFont(Font.TRUETYPE_FONT, font_file);
         defaultFont = defaultFont.deriveFont(14f);
         setUIFont(new FontUIResource(defaultFont));
 
+        // Inizializza le basi del programma come il nome e il look and feel
         FlatDarkLaf.setup();
         frame = new JFrame("MarketHeaven - 1.0.0");
         frame.setSize(1400, 800);
@@ -44,6 +46,7 @@ public class Main {
 
         JPanel apriOperazionePanel = new JPanel(new MigLayout("filly", "[40%][20%][40%]"));
 
+        // Pulsante per vendere
         Color vendiButtonColore = new Color(148, 57, 57);
         JRoundButton vendiButton = new JRoundButton("VENDI", vendiButtonColore, new Color(145, 145, 145));
         vendiButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -58,8 +61,10 @@ public class Main {
             }
         });
 
+        // Quantità da operare
         quantitaInput = new JRoundTextField();
 
+        // Pulsante per comprare
         Color compraButtonColore = new Color(41, 83, 138);
         JRoundButton compraButton = new JRoundButton("COMPRA", compraButtonColore, new Color(145, 145, 145));
         compraButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -74,6 +79,7 @@ public class Main {
             }
         });
 
+        // Pulsante per scaricare le operazioni
         Color scaricaOperazioniButtonColore = new Color(21, 21, 21);
         JRoundButton scaricaOperazioniButton = new JRoundButton("SCARICA POSIZIONI", scaricaOperazioniButtonColore, new Color(145, 145, 145));
         scaricaOperazioniButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -96,6 +102,7 @@ public class Main {
 
         // PANNELLO PER IL GRAFICO
 
+        // Creazione del grafico
         series = new TimeSeries("Prezzi");
         TimeSeriesCollection dataset = new TimeSeriesCollection(series);
 
@@ -106,6 +113,7 @@ public class Main {
         xAxis.setDateFormatOverride(new SimpleDateFormat("hh:mm:ss"));
         ChartPanel graficoInnerPanel = new ChartPanel(grafico);
 
+        // Classe per rendere la linea curva
         XYSplineRenderer lineRenderer = new XYSplineRenderer(100);
         lineRenderer.setSeriesShapesVisible(0, false);
         lineRenderer.setSeriesShape(0, null);
@@ -114,6 +122,7 @@ public class Main {
         grafico.getTitle().setPaint(Color.white);
         grafico.getLegend().setVisible(false);
 
+        // Impostazioni di colori e grafica
         plot.setRenderer(lineRenderer);
         grafico.setBackgroundPaint(UIManager.getDefaults().getColor("SystemColor.background"));
         plot.getRangeAxis().setTickLabelPaint(UIManager.getDefaults().getColor("TextField.foreground"));
@@ -146,6 +155,7 @@ public class Main {
         frame.setVisible(true);
     }
 
+    // Funzione per impostare il font a tutto il programma
     public static void setUIFont(FontUIResource f) {
         java.util.Enumeration keys = UIManager.getDefaults().keys();
         while (keys.hasMoreElements()) {

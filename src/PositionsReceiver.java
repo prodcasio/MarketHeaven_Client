@@ -41,7 +41,7 @@ public class PositionsReceiver {
             // Salva i dati XML nel file positions.xml
             saveXMLToFile(xmlData, "positions.xml");
 
-            System.out.println("Dati ricevuti e salvati correttamente nel file positions.xml.");
+            Popup.createPopup("Dati ricevuti e salvati correttamente nel file positions.xml.");
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -4,15 +4,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.RoundRectangle2D;
 
-public class JRoundButton  extends JButton {
+// Estende JButton per creare un pulsante rotondo personalizzato
+public class JRoundButton extends JButton {
+    // Costanti per l'ombra del pulsante
     private static final int SHADOW_SIZE = 5;
     private static final int SHADOW_ALPHA = 30;
+
+    // Colori del pulsante e del testo
     private Color buttonColor;
     private Color textColor;
+
+    // Colori di destinazione per la transizione fluida
     private Color targetColorBackground;
     private Color targetColorText;
+
+    // Timer per gestire la transizione dei colori
     private Timer timer;
 
+    // Costruttore
     public JRoundButton(String text, Color buttonColor, Color textColor) {
         super(text);
         setOpaque(false);
@@ -23,30 +32,40 @@ public class JRoundButton  extends JButton {
         this.buttonColor = buttonColor;
         this.targetColorBackground = buttonColor;
 
-        // Riduci il margine per il pulsante
-        setMargin(new Insets(10, 30, 10, 30)); // Puoi regolare i valori degli insetti in base alle tue esigenze
+        // Imposta il margine per il pulsante
+        setMargin(new Insets(10, 30, 10, 30)); // Regola i valori degli insetti secondo necessità
     }
 
+    // Metodo per cambiare i colori in modo fluido
     public void changeColorsSmooth(Color targetBackgroundColor, Color targetTextColor) {
         this.targetColorBackground = targetBackgroundColor;
         this.targetColorText = targetTextColor;
+
+        // Interrompe il timer se è già in esecuzione
         if (timer != null && timer.isRunning()) {
             timer.stop();
         }
+
+        // Crea e avvia il timer per la transizione dei colori
         timer = new Timer(10, new ActionListener() {
             float increment = 0.20f;
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 buttonColor = calculateNextColor(buttonColor, targetColorBackground, increment);
                 textColor = calculateNextColor(textColor, targetColorText, increment);
                 repaint();
+
+                // Interrompe il timer quando i colori raggiungono la destinazione
                 if (buttonColor.equals(targetBackgroundColor) && textColor.equals(targetTextColor)) {
-                    ((Timer)e.getSource()).stop();
+                    ((Timer) e.getSource()).stop();
                 }
             }
         });
         timer.start();
     }
+
+    // Metodo privato per calcolare il prossimo colore nella transizione
     private Color calculateNextColor(Color currentColor, Color targetColor, float increment) {
         int r = (int) (currentColor.getRed() + (targetColor.getRed() - currentColor.getRed()) * increment);
         int g = (int) (currentColor.getGreen() + (targetColor.getGreen() - currentColor.getGreen()) * increment);
@@ -54,7 +73,7 @@ public class JRoundButton  extends JButton {
         return new Color(r, g, b);
     }
 
-
+    // Sovrascrive il metodo paintComponent per disegnare il pulsante personalizzato
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g.create();
@@ -64,7 +83,7 @@ public class JRoundButton  extends JButton {
         for (int i = 0; i < SHADOW_SIZE; i++) {
             int alpha = SHADOW_ALPHA / (SHADOW_SIZE - i);
             Color shadowColor = new Color(buttonColor.getRed(), buttonColor.getGreen(), buttonColor.getBlue(), alpha);
-            g2.setColor(shadowColor); // Colore dell'ombra con gradiente di trasparenza
+            g2.setColor(shadowColor);
             Shape shadowShape = new RoundRectangle2D.Float(i, i, getWidth() - i * 2, getHeight() - i * 2, 10, 10);
             g2.fill(shadowShape);
         }
@@ -74,7 +93,8 @@ public class JRoundButton  extends JButton {
         g2.setColor(buttonColor);
         g2.fill(shape);
         g2.setColor(textColor);
-        // Sposta il testo al centro del pulsante
+
+        // Centra il testo nel pulsante
         FontMetrics fm = g2.getFontMetrics();
         int textX = (getWidth() - fm.stringWidth(getText())) / 2;
         int textY = (getHeight() - fm.getHeight()) / 2 + fm.getAscent();
@@ -82,8 +102,9 @@ public class JRoundButton  extends JButton {
         g2.dispose();
     }
 
+    // Sovrascrive il metodo paintBorder per non disegnare il bordo del pulsante
     @Override
     protected void paintBorder(Graphics g) {
-        // Non disegnare il bordo
+        // Non disegna il bordo
     }
 }

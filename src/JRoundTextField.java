@@ -3,14 +3,14 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 
-public class JRoundTextField  extends JTextField {
+public class JRoundTextField extends JTextField {
 
-    private int borderRadius = 10;
+    private int borderRadius = 10; // Raggio dei bordi
 
     public JRoundTextField() {
         super();
-        setOpaque(false); // Rendi il background trasparente per visualizzare lo sfondo personalizzato
-        setBorder(new EmptyBorder(5, 10, 5, 10)); // Aggiungi un margine interno per separare il testo dai bordi
+        setOpaque(false); // Rendi il background trasparente
+        setBorder(new EmptyBorder(5, 10, 5, 10)); // Aggiungi un margine interno
     }
 
     @Override
@@ -22,7 +22,7 @@ public class JRoundTextField  extends JTextField {
         g2.setColor(getBackground());
         g2.fill(new RoundRectangle2D.Double(0, 0, getWidth() - 1, getHeight() - 1, borderRadius, borderRadius));
 
-        super.paintComponent(g2);
+        super.paintComponent(g2); // Chiama il metodo paintComponent della superclasse
         g2.dispose();
     }
 
@@ -33,7 +33,7 @@ public class JRoundTextField  extends JTextField {
 
     @Override
     public Dimension getPreferredSize() {
-        // Aggiungi un padding per garantire che il testo non sia troppo vicino ai bordi arrotondati
+        // Aggiungi un padding per il testo
         return new Dimension(super.getPreferredSize().width + 20, super.getPreferredSize().height);
     }
 

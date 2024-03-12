@@ -8,12 +8,18 @@ import java.net.InetAddress;
 public class PositionSender {
 
     public static void sendPosition(boolean isBuy) {
-        if (Main.assetChosen != null && Main.assetChosen.isEmpty()) {
+        if (Main.assetChosen == null || Main.assetChosen.isEmpty()) {
+            Popup.createPopup("Scegliere un asset.");
             return;
         }
 
         JSONObject json = new JSONObject();
         json.put("asset", Main.assetChosen);
+
+        if(Main.quantitaInput.getText().isEmpty()){
+            Popup.createPopup("Inserire la quantità di lotti.");
+            return;
+        }
 
         double quantity = Double.parseDouble(Main.quantitaInput.getText());
         json.put("lots", quantity);
@@ -36,7 +42,7 @@ public class PositionSender {
             // Invia il pacchetto
             socket.send(packet);
 
-            System.out.println("Richiesta inviata con successo.");
+            Popup.createPopup("Posizione aperta correttamente.");
 
             // Chiudi il socket
             socket.close();
