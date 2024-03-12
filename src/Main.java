@@ -27,7 +27,8 @@ public class Main {
     public static JFreeChart grafico;
     public static String assetChosen;
     public static JPanel graficoPanel;
-    public static ListInformationReceiver lir;
+    public static volatile ListInformationReceiver lir;
+    public static JRoundTextField quantitaInput;
 
     public static void main(String[] args) throws IOException, FontFormatException {
 
@@ -46,6 +47,7 @@ public class Main {
         Color vendiButtonColore = new Color(148, 57, 57);
         JRoundButton vendiButton = new JRoundButton("VENDI", vendiButtonColore, new Color(145, 145, 145));
         vendiButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        vendiButton.addActionListener(e -> PositionSender.sendPosition(false));
         vendiButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 vendiButton.changeColorsSmooth(new Color(208, 72, 72), new Color(231, 231, 231));
@@ -56,11 +58,12 @@ public class Main {
             }
         });
 
-        JRoundTextField quantitaInput = new JRoundTextField();
+        quantitaInput = new JRoundTextField();
 
         Color compraButtonColore = new Color(41, 83, 138);
         JRoundButton compraButton = new JRoundButton("COMPRA", compraButtonColore, new Color(145, 145, 145));
         compraButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        compraButton.addActionListener(e -> PositionSender.sendPosition(true));
         compraButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 compraButton.changeColorsSmooth(new Color(57, 119, 191), new Color(231, 231, 231));
@@ -71,9 +74,24 @@ public class Main {
             }
         });
 
+        Color scaricaOperazioniButtonColore = new Color(21, 21, 21);
+        JRoundButton scaricaOperazioniButton = new JRoundButton("SCARICA POSIZIONI", scaricaOperazioniButtonColore, new Color(145, 145, 145));
+        scaricaOperazioniButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        scaricaOperazioniButton.addActionListener(e -> PositionsReceiver.receivePositions());
+        scaricaOperazioniButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                scaricaOperazioniButton.changeColorsSmooth(new Color(10, 10, 10), new Color(145, 145, 145));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                scaricaOperazioniButton.changeColorsSmooth(scaricaOperazioniButtonColore, new Color(145, 145, 145));
+            }
+        });
+
         apriOperazionePanel.add(vendiButton, "w 100%");
         apriOperazionePanel.add(quantitaInput, "w 100%");
-        apriOperazionePanel.add(compraButton, "w 100%");
+        apriOperazionePanel.add(compraButton, "w 100%, wrap");
+        apriOperazionePanel.add(scaricaOperazioniButton, "w 100%, span 3");
 
 
         // PANNELLO PER IL GRAFICO
