@@ -19,7 +19,7 @@ public class PositionsReceiver {
 
     public static void receivePositions() {
         try {
-            // Crea un DatagramSocket sulla porta 7788
+            // Crea un ServerSocket sulla porta 7788
             Socket socket = new Socket("127.0.0.1", 7788);
 
             // Estrai i dati dal pacchetto

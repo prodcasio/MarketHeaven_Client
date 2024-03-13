@@ -25,7 +25,7 @@ public class PositionSender {
         json.put("operation", isBuy ? "buy" : "sell");
 
         try {
-            // Crea un DatagramSocket
+            // Crea un ServerSocket
             Socket socket = new Socket("127.0.0.1", 6677);
 
             // Converti la stringa JSON in un array di byte
