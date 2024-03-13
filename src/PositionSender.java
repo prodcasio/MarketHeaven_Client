@@ -1,9 +1,8 @@
 import org.json.JSONObject;
 
+import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
+import java.net.Socket;
 
 public class PositionSender {
 
@@ -26,26 +25,19 @@ public class PositionSender {
         json.put("operation", isBuy ? "buy" : "sell");
 
         try {
-            // Indirizzo IP e porta del destinatario
-            InetAddress address = InetAddress.getLocalHost();
-            int port = 6677;
-
             // Crea un DatagramSocket
-            DatagramSocket socket = new DatagramSocket();
+            Socket socket = new Socket("127.0.0.1", 6677);
 
             // Converti la stringa JSON in un array di byte
-            byte[] data = json.toString().getBytes();
+            String richiesta = json.toString();
 
-            // Crea un pacchetto Datagram da inviare
-            DatagramPacket packet = new DatagramPacket(data, data.length, address, port);
+            DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
+            dos.writeUTF(richiesta);
+            dos.flush();
+            dos.close();
 
-            // Invia il pacchetto
-            socket.send(packet);
-
-            Popup.createPopup("Posizione aperta correttamente.");
-
-            // Chiudi il socket
             socket.close();
+            Popup.createPopup("Posizione aperta correttamente.");
 
         } catch (IOException e) {
             e.printStackTrace();

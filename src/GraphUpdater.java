@@ -3,7 +3,6 @@ import org.jfree.data.time.Hour;
 import org.jfree.data.time.Minute;
 import org.jfree.data.time.Second;
 import org.json.JSONObject;
-
 import java.time.LocalDateTime;
 
 public class GraphUpdater extends Thread{

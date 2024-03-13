@@ -2,10 +2,16 @@
 <positions>
   <position>
     <lots>50</lots>
-    <date>2024-03-12 23:15:46</date>
-    <price>1.123792</price>
+    <date>2024-03-13 18:10:24</date>
+    <price>1.11696</price>
     <asset>EURUSD</asset>
     <operation>buy</operation>
-    <pnl>0.1</pnl>
+  </position>
+  <position>
+    <lots>100</lots>
+    <date>2024-03-13 18:10:42</date>
+    <price>0.686949</price>
+    <asset>AUDUSD</asset>
+    <operation>sell</operation>
   </position>
 </positions>

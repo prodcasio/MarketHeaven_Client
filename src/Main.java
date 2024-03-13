@@ -10,7 +10,6 @@ import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYSplineRenderer;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
-
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import java.awt.*;

@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c772dc4d-1336-4050-869d-48271e731beb" name="Changes" comment="init">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/positions.xml" beforeDir="false" afterPath="$PROJECT_DIR$/positions.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AssetPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AssetPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GraphUpdater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GraphUpdater.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ListInformationReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ListInformationReceiver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PositionSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PositionSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PositionsReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PositionsReceiver.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +51,7 @@
   }
 }</component>
   <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application">
+    <configuration name="Main" type="Application" factoryName="Application" singleton="false">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="MarketHeaven - Client" />
       <method v="2">
@@ -96,5 +101,12 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
     <option name="LAST_COMMIT_MESSAGE" value="init" />
+  </component>
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="java.io.ObjectInputStream" memberName="bin" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>

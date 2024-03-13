@@ -1,14 +1,10 @@
 import net.miginfocom.swing.MigLayout;
-import org.json.JSONArray;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.font.TextAttribute;
-import java.text.NumberFormat;
 import java.util.Collections;
-import java.util.Locale;
 
 public class AssetPanel extends JPanel{
     AssetPanel(String name, float value, float change, float spread){
