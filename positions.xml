@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<positions>
+  <position>
+    <lots>50</lots>
+    <date>2024-03-12 23:15:46</date>
+    <price>1.123792</price>
+    <asset>EURUSD</asset>
+    <operation>buy</operation>
+    <pnl>0.1</pnl>
+  </position>
+</positions>
