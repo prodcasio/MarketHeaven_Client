@@ -41,7 +41,7 @@ public class Main {
         // Inizializza le basi del programma come il nome e il look and feel
         FlatDarkLaf.setup();
         frame = new JFrame("MarketHeaven - 1.0.0");
-        frame.setSize(1400, 800);
+        frame.setSize(1500, 800);
         JPanel mainPanel = new JPanel(new MigLayout("", "[25%][75%]", "[10%][90%]"));
 
         JPanel apriOperazionePanel = new JPanel(new MigLayout("filly", "[40%][20%][40%]"));
@@ -137,10 +137,11 @@ public class Main {
 
 
         // PANNELLO PER LA LISTA DI ASSET
-
-        listaAssetPanel = new JPanel(new MigLayout("w 100%"));
+        double scrollBarWidth = new JScrollPane().getVerticalScrollBar().getPreferredSize().getWidth();
+        listaAssetPanel = new JPanel(new MigLayout("inset 5px 5px 5px " + (scrollBarWidth + 5) + ", w 100%"));
 
         listaAssetScrollPane = new JScrollPane(listaAssetPanel);
+        listaAssetScrollPane.setHorizontalScrollBar(null);
 
         lir = new ListInformationReceiver();
         lir.start();
