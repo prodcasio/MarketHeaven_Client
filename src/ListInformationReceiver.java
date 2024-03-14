@@ -21,7 +21,7 @@ public class ListInformationReceiver extends Thread {
             gu.start();
             Socket clientSocket = new Socket();
             clientSocket.connect(new InetSocketAddress("127.0.0.1", 5566), 10000);
-            System.out.println("richiesta accettata");
+            System.out.println("Richiesta accettata");
             while (true) {
                 try {
                     BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
